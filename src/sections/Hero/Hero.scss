@@ -1,49 +1,118 @@
 @use '../../styles/mixins' as m;
+@use '../../styles/variables';
 
 .hero {
-  padding-bottom: 80px;
-}
+  padding-bottom: var(--space-6);
 
-.hero__container {
-  @include m.container;
-}
+  &__container {
+    @include m.container;
+  }
 
-.hero__nav {
-  padding: 24px 0;
-}
+  &__nav {
+    padding: var(--space-2) 0;
+  }
 
-.hero__menu {
-  display: flex;
-  gap: 32px;
-  align-items: center;
-}
+  &__logo {
+    strong {
+      color: var(--color-primary);
+      font-weight: 800;
+      font-style: normal;
+    }
 
-.hero__cta {
-  padding: 8px 14px;
-  border-radius: var(--radius);
-  background: var(--color-accent);
-}
+    em {
+      color: var(--color-text);
+      font-style: italic;
+      font-weight: 600;
+      opacity: 0.85;
+    }
+  }
 
-.hero__content {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 48px;
-  align-items: center;
-  padding-top: 60px;
-}
+  &__menu {
+    display: flex;
+    gap: var(--space-4);
+    align-items: center;
+  }
 
-.hero__card {
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: var(--radius);
-  padding: 24px;
-  text-align: center;
-}
+  &__cta {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius);
+    background: var(--color-accent);
+  }
 
-.hero__avatar {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  background: #e5e7eb;
-  margin: 0 auto 16px;
+  &__content {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: var(--space-6);
+    padding-top: var(--space-6);
+
+    @include m.down(900px) {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+  }
+
+  &__card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    text-align: center;
+  }
+
+  &__avatar {
+    width: 6rem; // 96px → rem umgerechnet
+    height: 6rem;
+    border-radius: 50%;
+    background: #e5e7eb;
+    margin: 0 auto var(--space-3);
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-3);
+  }
+
+  p {
+    font-size: 1.125rem;
+    color: var(--color-muted);
+  }
+
+  //MOBILE
+  @include m.down(600px) {
+    padding-bottom: var(--space-5);
+
+    &__nav {
+      padding: var(--space-2) 0;
+    }
+
+    &__menu {
+      gap: var(--space-2);
+      flex-wrap: wrap; // erlaubt Umbruch, wenn es eng wird
+    }
+
+    &__cta {
+      padding: 0.5rem 0.75rem; // etwas kompakter als desktop
+      font-size: 0.95rem;
+    }
+
+    &__content {
+      padding-top: var(--space-5);
+    }
+
+    h1 {
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      font-size: 1rem; // ~16px, besser auf Mobile
+    }
+
+    &__avatar {
+      width: 5rem;
+      height: 5rem;
+    }
+  }
 }

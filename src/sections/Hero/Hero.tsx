@@ -5,7 +5,10 @@ export default function Hero() {
     <section className="hero">
       <header className="hero__nav">
         <div className="hero__container">
-          <div className="hero__logo">Ferdi</div>
+          <div className="hero__logo">
+            <strong>C</strong>
+            <em>learwise</em>
+          </div>
 
           <nav className="hero__menu">
             <a href="#about">Über mich</a>
