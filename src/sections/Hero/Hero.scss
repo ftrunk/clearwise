@@ -68,32 +68,24 @@
     }
   }
 
-  &__card {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: var(--radius);
-    padding: var(--space-4);
-    text-align: center;
+  &__image {
+    width: 100%;
+    max-width: 520px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
   }
 
-  &__avatar {
-    width: 6rem; // 96px → rem umgerechnet
-    height: 6rem;
-    border-radius: 50%;
-    background: #e5e7eb;
-    margin: 0 auto var(--space-3);
-  }
+  // 900px
+  @include m.down(900px) {
+    &__content {
+      grid-template-columns: 1fr;
+    }
 
-  h1 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    margin-bottom: var(--space-3);
-  }
-
-  p {
-    font-size: 1.125rem;
-    color: var(--color-muted);
+    &__image {
+      max-width: 320px;
+      margin: 0 auto;
+    }
   }
 
   //MOBILE
@@ -116,19 +108,6 @@
 
     &__content {
       padding-top: var(--space-5);
-    }
-
-    h1 {
-      letter-spacing: -0.02em;
-    }
-
-    p {
-      font-size: 1rem; // ~16px, besser auf Mobile
-    }
-
-    &__avatar {
-      width: 5rem;
-      height: 5rem;
     }
   }
 }

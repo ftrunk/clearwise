@@ -1,4 +1,5 @@
 import './Hero.scss'
+import heroPortrait from '../../assets/hero-portrait.jpg'
 
 export default function Hero() {
   return (
@@ -34,13 +35,11 @@ export default function Hero() {
           </p>
         </div>
 
-        <div className="hero__right">
-          <div className="hero__card">
-            <div className="hero__avatar" />
-            <h3>Ferdi</h3>
-            <p>Apotheker • Medizininformatik</p>
-          </div>
-        </div>
+        <img
+          src={heroPortrait}
+          alt="Ferdinand – Digital Infrastructure Architect"
+          className="hero__image"
+        />
       </div>
     </section>
   )
