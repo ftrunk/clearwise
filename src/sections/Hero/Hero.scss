@@ -78,6 +78,10 @@
       line-height: 1.06;
       letter-spacing: -0.035em;
       margin: 0 0 var(--space-3);
+
+      em {
+        color: var(--color-accent);
+      }
     }
 
     p {

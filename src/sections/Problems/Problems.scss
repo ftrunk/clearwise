@@ -2,6 +2,8 @@
 
 .problems {
   padding: clamp(3rem, 7vw, 6rem) 0;
+  background-color: var(--color-text);
+  text-align: center;
 }
 
 .problems__inner {
@@ -9,21 +11,26 @@
 }
 
 .problems h2 {
-  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+  font-size: clamp(1.6rem, 3.2vw, 6rem);
   letter-spacing: -0.02em;
-  margin: 0 0 var(--space-2);
+  margin: 0 0 var(--space-5);
+  color: white;
 }
 
 .problems p {
-  margin: 0 0 var(--space-5);
-  color: var(--color-muted);
-  max-width: 70ch;
+  font-size: clamp(1.2rem, 1.8vw, 4rem);
+  margin: 0 0 var(--space-6);
+  color: var(--color-primary-light);
+  max-width: 60vw;
+  display: inline-block;
 }
 
 .problems__cards {
   display: flex;
   gap: var(--space-4);
   flex-wrap: wrap;
+  justify-content: center;
+  margin-top: var(--space-6);
 }
 
 .problems__card {
@@ -33,14 +40,21 @@
   border-radius: 20px;
   padding: var(--space-4);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  max-width: 500px;
 }
 
 .problems__card h3 {
   margin: 0 0 var(--space-2);
-  font-size: 1.1rem;
+  font-size: clamp(1.6rem, 2vw, 3rem);
 }
 
 .problems__card p {
   margin: 0;
   color: var(--color-muted);
+}
+
+@include m.down(1000px) {
+  .problems__card {
+    flex: 0 0 100%; // erzwingt 1 pro Zeile
+  }
 }

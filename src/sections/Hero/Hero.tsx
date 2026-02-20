@@ -24,7 +24,7 @@ export default function Hero() {
       <div className="hero__content hero__container">
         <div className="hero__left">
           <h1>
-            Privacy-first Digital Infrastructure
+            <em>Privacy-First</em> Digital Infrastructure
             <br />
             für Therapeuten & Coaches
           </h1>
