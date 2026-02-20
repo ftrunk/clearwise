@@ -7,25 +7,28 @@
   &__container {
     @include m.container;
     display: flex;
-    align-items: center; // ← DAS ist entscheidend
+    align-items: center;
     justify-content: space-between;
   }
 
   &__nav {
+    width: 100%;
     padding: var(--space-2) 0;
+    background: var(--color-text);
   }
 
   &__logo {
     line-height: 1;
+    font-size: 1.3rem;
 
     strong {
-      color: var(--color-primary);
+      color: var(--color-accent);
       font-weight: 800;
       font-style: normal;
     }
 
     em {
-      color: var(--color-text);
+      color: white;
       font-style: italic;
       font-weight: 600;
       opacity: 0.85;
@@ -36,6 +39,7 @@
     display: flex;
     gap: var(--space-4);
     align-items: center;
+    color: white;
 
     a:not(.hero__cta):hover {
       color: var(--color-accent);
@@ -48,38 +52,53 @@
     background: var(--color-accent);
     display: inline-flex;
     align-items: center;
+    transition:
+      background 0.25s ease,
+      color 0.25s ease,
+      transform 0.25s ease;
 
     &:hover {
-      background: var(--color-primary);
-      color: white;
+      background: white;
+      color: var(--color-text);
+      transform: translateY(-1px);
     }
   }
 
   &__content {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1.15fr 0.85fr;
     align-items: center;
-    gap: var(--space-6);
-    padding-top: var(--space-6);
+    gap: clamp(2rem, 6rem, 20rem);
+    padding-top: clamp(5rem, 8vh, 10rem);
+    padding-bottom: clamp(2rem, 6vh, 5rem);
 
-    @include m.down(900px) {
-      grid-template-columns: 1fr;
-      gap: var(--space-5);
+    h1 {
+      font-size: clamp(1.4rem, 5vw, 10rem);
+      line-height: 1.06;
+      letter-spacing: -0.035em;
+      margin: 0 0 var(--space-3);
+    }
+
+    p {
+      font-size: clamp(1.05rem, 2.1vw, 3.25rem);
+      color: var(--color-muted);
+      margin: 0;
     }
   }
 
   &__image {
-    width: 100%;
-    max-width: 520px;
-    border-radius: 20px;
+    width: clamp(280px, 35vw, 540px);
+    border-radius: 24px;
     object-fit: cover;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    justify-self: end;
   }
 
   // 900px
   @include m.down(900px) {
     &__content {
       grid-template-columns: 1fr;
+      gap: 3rem;
     }
 
     &__image {
@@ -104,10 +123,6 @@
     &__cta {
       padding: 0.5rem 0.75rem; // etwas kompakter als desktop
       font-size: 0.95rem;
-    }
-
-    &__content {
-      padding-top: var(--space-5);
     }
   }
 }

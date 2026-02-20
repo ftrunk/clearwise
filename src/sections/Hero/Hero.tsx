@@ -8,7 +8,7 @@ export default function Hero() {
         <div className="hero__container">
           <div className="hero__logo">
             <strong>C</strong>
-            <em>learwise</em>
+            <em>learwise.</em>
           </div>
 
           <nav className="hero__menu">

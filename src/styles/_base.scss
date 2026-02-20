@@ -24,3 +24,9 @@ a {
 button {
   font-family: inherit;
 }
+
+@media (min-width: 1400px) {
+  :root {
+    --container: 90rem; // 1280px
+  }
+}
