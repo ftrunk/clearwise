@@ -1,0 +1,290 @@
+@use '../../styles/mixins' as m;
+
+.process {
+  padding: clamp(3rem, 7vw, 6rem) 0;
+  background: var(--color-bg);
+
+  &__inner {
+    @include m.container;
+  }
+
+  &__header {
+    h2 {
+      font-size: clamp(1.9rem, 2.4vw, 2.6rem);
+      margin: 0 0 var(--space-2);
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+    }
+
+    p {
+      margin: 0 0 var(--space-6);
+      color: var(--color-muted);
+      font-size: clamp(1.05rem, 1.1vw, 1.2rem);
+      max-width: 70ch;
+    }
+  }
+
+  // FLOW WRAPPER (Desktop: Circle-ish layout)
+  &__flow {
+    position: relative;
+    display: grid;
+    gap: var(--space-4);
+
+    // Desktop: 3x3 grid, center element in der Mitte, 4 Cards drum herum
+    grid-template-columns: 1fr 0.9fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      '. step1 .'
+      'step4 center step2'
+      '. step3 .';
+
+    align-items: center;
+  }
+
+  // Center label
+  &__center {
+    grid-area: center;
+    justify-self: center;
+    align-self: center;
+
+    width: clamp(160px, 18vw, 220px);
+    height: clamp(160px, 18vw, 220px);
+    border-radius: 999px;
+
+    display: grid;
+    place-items: center;
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(17, 24, 39, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+
+    span {
+      font-weight: 600;
+      color: var(--color-text);
+      letter-spacing: -0.01em;
+      padding: 0 var(--space-3);
+      line-height: 1.2;
+    }
+  }
+
+  // STEP CARD BASE
+  &__step {
+    background: white;
+    border: 1px solid rgba(17, 24, 39, 0.08);
+    border-radius: 20px;
+    padding: var(--space-4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+
+    // Performance-friendly hover
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+    transform-origin: center;
+    will-change: transform;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
+    }
+
+    // Number pill
+    .process__num {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+
+      background: rgba(244, 162, 97, 0.18);
+      color: var(--color-text);
+      margin-bottom: var(--space-3);
+    }
+
+    .process__title {
+      margin: 0 0 var(--space-2);
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+      color: var(--color-text);
+    }
+
+    .process__desc {
+      margin: 0;
+      color: var(--color-muted);
+      line-height: 1.55;
+      max-width: 60ch;
+    }
+  }
+
+  // Positioning via modifiers
+  &__step--1 {
+    grid-area: step1;
+    justify-self: center;
+  }
+  &__step--2 {
+    grid-area: step2;
+    justify-self: start;
+  }
+  &__step--3 {
+    grid-area: step3;
+    justify-self: center;
+  }
+  &__step--4 {
+    grid-area: step4;
+    justify-self: end;
+  }
+
+  // Arrows (Desktop): Card -> Center, simple + subtle
+  // We draw a line with a small arrow head. Keeps it lightweight.
+  &__step--1,
+  &__step--2,
+  &__step--3,
+  &__step--4 {
+    position: relative;
+  }
+
+  &__step--1::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -14px;
+    width: 2px;
+    height: 28px;
+    background: rgba(17, 24, 39, 0.12);
+    transform: translateX(-50%);
+  }
+
+  &__step--2::after {
+    content: '';
+    position: absolute;
+    left: -14px;
+    top: 50%;
+    width: 28px;
+    height: 2px;
+    background: rgba(17, 24, 39, 0.12);
+    transform: translateY(-50%);
+  }
+
+  &__step--3::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -14px;
+    width: 2px;
+    height: 28px;
+    background: rgba(17, 24, 39, 0.12);
+    transform: translateX(-50%);
+  }
+
+  &__step--4::after {
+    content: '';
+    position: absolute;
+    right: -14px;
+    top: 50%;
+    width: 28px;
+    height: 2px;
+    background: rgba(17, 24, 39, 0.12);
+    transform: translateY(-50%);
+  }
+
+  // Small arrow heads (Desktop)
+  &__step--1::before,
+  &__step--2::before,
+  &__step--3::before,
+  &__step--4::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid rgba(17, 24, 39, 0.18);
+    border-bottom: 2px solid rgba(17, 24, 39, 0.18);
+  }
+
+  &__step--1::before {
+    left: 50%;
+    bottom: -18px;
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  &__step--2::before {
+    left: -18px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+  }
+
+  &__step--3::before {
+    left: 50%;
+    top: -18px;
+    transform: translateX(-50%) rotate(-135deg);
+  }
+
+  &__step--4::before {
+    right: -18px;
+    top: 50%;
+    transform: translateY(-50%) rotate(135deg);
+  }
+
+  // Responsive: stack vertically + arrows between items
+  @include m.down(900px) {
+    &__flow {
+      grid-template-columns: 1fr;
+      grid-template-areas: none;
+      gap: var(--space-4);
+    }
+
+    &__center {
+      display: none; // auf mobile weglassen (ruhiger)
+    }
+
+    &__step {
+      // full width cards
+    }
+
+    // reset desktop arrows
+    &__step--1::after,
+    &__step--2::after,
+    &__step--3::after,
+    &__step--4::after,
+    &__step--1::before,
+    &__step--2::before,
+    &__step--3::before,
+    &__step--4::before {
+      content: none;
+    }
+
+    // mobile arrows: bottom connector (except last)
+    &__step {
+      position: relative;
+    }
+
+    &__step:not(:last-of-type)::after {
+      content: '';
+      position: absolute;
+      left: 22px; // aligned with number pill center-ish
+      bottom: -18px;
+      width: 2px;
+      height: 36px;
+      background: rgba(17, 24, 39, 0.12);
+    }
+
+    &__step:not(:last-of-type)::before {
+      content: '';
+      position: absolute;
+      left: 19px;
+      bottom: -22px;
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid rgba(17, 24, 39, 0.18);
+      border-bottom: 2px solid rgba(17, 24, 39, 0.18);
+      transform: rotate(45deg);
+    }
+  }
+
+  // Accessibility: reduce motion
+  @media (prefers-reduced-motion: reduce) {
+    &__step {
+      transition: none;
+    }
+  }
+}
