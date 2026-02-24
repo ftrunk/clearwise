@@ -1,4 +1,6 @@
+import { useRef } from 'react'
 import './Process.scss'
+import ProcessArrows from './ProcessArrows'
 
 type Step = {
   num: string
@@ -30,20 +32,31 @@ const steps: Step[] = [
 ]
 
 export default function Process() {
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const stepRefs = useRef<(HTMLElement | null)[]>([])
+
   return (
     <section className="process" id="process" aria-labelledby="process-title">
       <div className="process__inner">
         <header className="process__header">
-          <h2 id="process-title">So entsteht deine sichere Digital-Architektur</h2>
+          <h2 id="process-title">So entsteht dein sicheres Digital-Setup</h2>
           <p>Strukturiert. DSGVO-sensibel. Zukunftsfähig.</p>
         </header>
 
-        <div className="process__flow" role="list" aria-label="4-Schritte Prozess">
+        <div
+          className="process__flow"
+          ref={containerRef}
+          role="list"
+          aria-label="4-Schritte Prozess"
+        >
           {steps.map((s, i) => (
             <article
               key={s.num}
               className={`process__step process__step--${i + 1}`}
               role="listitem"
+              ref={(el) => {
+                stepRefs.current[i] = el
+              }}
             >
               <div className="process__num" aria-hidden="true">
                 {s.num}
@@ -54,8 +67,10 @@ export default function Process() {
           ))}
 
           <div className="process__center" aria-hidden="true">
-            <span>Dein ruhiges, sauberes Setup</span>
+            <span>Dein sauberes Setup</span>
           </div>
+
+          <ProcessArrows containerRef={containerRef} stepRefs={stepRefs} />
         </div>
       </div>
     </section>
