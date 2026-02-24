@@ -1,0 +1,167 @@
+@use '../../styles/mixins' as m;
+
+.timeline {
+  --card-grad-a: rgba(254, 254, 254, 0.06); // “grau”
+  --card-grad-b: rgba(15, 14, 14, 0.92); // “weiß”
+
+  padding: clamp(3rem, 6vw, 5.5rem) 0;
+  background: var(--color-bg);
+
+  &__inner {
+    @include m.container;
+  }
+
+  /* ============================= */
+  /* Header */
+  /* ============================= */
+  &__header {
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+
+    h2 {
+      margin: 0 0 var(--space-2);
+      font-size: clamp(1.9rem, 2.6vw, 2.7rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--color-text);
+    }
+
+    p {
+      margin: 0;
+      color: var(--color-muted);
+      font-size: clamp(1.05rem, 1.15vw, 1.2rem);
+      max-width: 70ch;
+    }
+  }
+
+  /* ============================= */
+  /* Timeline cards */
+  /* ============================= */
+
+  &__content {
+    //background: var(--color-muted);
+    background: linear-gradient(135deg, var(--card-grad-a), var(--card-grad-b));
+    border: 1px solid black;
+    padding: var(--space-4);
+    border-radius: 20px;
+    box-shadow:
+      0 8px 18px rgb(0, 0, 0),
+      inset 0 1px 0 rgba(255, 255, 255, 0.01);
+  }
+
+  /* ============================= */
+  /* Timeline wrapper + center line */
+  /* ============================= */
+  &__wrapper {
+    --gutter: clamp(1.25rem, 3vw, 2.5rem);
+
+    /* Dot-Setup */
+    --dot: 14px;
+    --dot-border: 3px;
+    --dot-half: calc((var(--dot) + (var(--dot-border) * 2)) / 2);
+
+    color: white;
+    position: relative;
+  }
+
+  &__wrapper::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 3px;
+    background: rgba(17, 24, 39, 0.12);
+    border-radius: 999px;
+  }
+
+  /* Item nimmt "halbe Seite" ein -> wächst nach außen */
+  &__item {
+    position: relative;
+    width: calc(50% - var(--gutter));
+
+    h3 {
+      color: var(--color-accent);
+    }
+  }
+
+  /* LEFT/RIGHT Positionierung: komplett links bzw rechts von der Linie */
+  &__item--left {
+    margin-right: auto;
+    text-align: right;
+
+    .timeline__content {
+      background: linear-gradient(165deg, var(--card-grad-a) 0%, var(--card-grad-b) 70%);
+    }
+  }
+
+  &__item--right {
+    margin-left: auto;
+    text-align: left;
+
+    .timeline__content {
+      background: linear-gradient(195deg, var(--card-grad-a) 0%, var(--card-grad-b) 70%);
+    }
+  }
+
+  /* Dot auf der Mittellinie: NICHT left:50% */
+  &__item::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    width: var(--dot);
+    height: var(--dot);
+    border-radius: 999px;
+    background: #fff;
+    border: var(--dot-border) solid rgba(244, 162, 97, 0.55);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    z-index: 3;
+  }
+
+  /* Dot für LEFT: sitzt rechts vom Item in die Gutter-Zone rein -> auf der Linie */
+  &__item--left::before {
+    right: calc(var(--gutter) * -1 - var(--dot-half)); /* -7px = halbe Dot-Breite */
+  }
+
+  /* Dot für RIGHT: sitzt links vom Item in die Gutter-Zone rein -> auf der Linie */
+  &__item--right::before {
+    left: calc(var(--gutter) * -1 - var(--dot-half));
+  }
+
+  /* Abstand zwischen Steps */
+  &__item + &__item {
+    margin-top: clamp(1.75rem, 4vw, 3rem);
+  }
+
+  /* Mobile bleibt wie gehabt (Linie links) */
+  @include m.down(900px) {
+    &__wrapper::before {
+      left: 20px;
+      transform: translateX(0);
+    }
+
+    &__content {
+      background: linear-gradient(135deg, var(--card-grad-a) 0%, var(--card-grad-b) 70%);
+    }
+
+    &__item {
+      width: 100%;
+      margin: 0;
+      padding-left: 3rem;
+      text-align: left;
+    }
+
+    &__item--left,
+    &__item--right {
+      text-align: left;
+    }
+
+    /* Dot wieder auf die linke Linie */
+    &__item--left::before,
+    &__item--right::before {
+      left: 20px;
+      right: auto;
+      transform: translateX(-50%);
+    }
+  }
+}

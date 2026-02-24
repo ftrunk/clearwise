@@ -43,7 +43,7 @@ function quadCurve(a: Point, b: Point, bend = 0.25): string {
   return `M ${a.x} ${a.y} Q ${cx} ${cy} ${b.x} ${b.y}`
 }
 
-export default function ProcessArrows({ containerRef, stepRefs }: Props) {
+export default function ProcessCircleArrows({ containerRef, stepRefs }: Props) {
   const reactId = useId()
   const markerId = useMemo(() => `arrow-${reactId.replace(/:/g, '')}`, [reactId])
 

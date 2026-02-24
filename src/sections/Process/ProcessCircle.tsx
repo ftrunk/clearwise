@@ -1,6 +1,6 @@
 import { useRef } from 'react'
-import './Process.scss'
-import ProcessArrows from './ProcessArrows'
+import './ProcessCircle.scss'
+import ProcessCircleArrows from './ProcessCircleArrows'
 
 type Step = {
   num: string
@@ -70,7 +70,7 @@ export default function Process() {
             <span>Dein sauberes Setup</span>
           </div>
 
-          <ProcessArrows containerRef={containerRef} stepRefs={stepRefs} />
+          <ProcessCircleArrows containerRef={containerRef} stepRefs={stepRefs} />
         </div>
       </div>
     </section>
