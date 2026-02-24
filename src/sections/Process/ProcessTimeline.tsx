@@ -51,7 +51,7 @@ export default function ProcessTimeline() {
                 }`}
               >
                 <div className="timeline__content">
-                  <div className="timeline__num">{step.num}</div>
+                  {/* <div className="timeline__num">{step.num}</div> */}
                   <h3>{step.title}</h3>
                   <p>{step.desc}</p>
                 </div>
