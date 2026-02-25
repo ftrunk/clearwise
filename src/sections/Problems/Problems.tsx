@@ -73,6 +73,13 @@ export default function Problems() {
             </ul>
           </article>
         </div>
+
+        <div className="problems__solution">
+          <h3>
+            Statt Unsicherheit und Tool-Chaos brauchst du eine <b>klare Architektur</b> – Schritt
+            für Schritt aufgebaut.
+          </h3>
+        </div>
       </div>
     </section>
   )

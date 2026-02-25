@@ -122,6 +122,15 @@
     margin-bottom: 0;
   }
 
+  &__solution {
+    margin-top: var(--space-6);
+    color: var(--color-primary-light);
+
+    h3 {
+      text-align: left;
+    }
+  }
+
   @include m.down(900px) {
     &__row {
       grid-template-columns: 56px 1fr;
