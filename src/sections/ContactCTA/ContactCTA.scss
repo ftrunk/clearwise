@@ -1,0 +1,76 @@
+@use '../../styles/mixins' as m;
+
+.contact {
+  padding: clamp(4rem, 8vw, 6rem) 0;
+  background: #ffffff;
+
+  &__inner {
+    @include m.container;
+    max-width: 900px;
+    text-align: center;
+  }
+
+  &__header {
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+
+    h2 {
+      margin: 0 0 var(--space-3);
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+    }
+
+    p {
+      margin: 0;
+      font-size: clamp(1.05rem, 1.2vw, 1.2rem);
+      color: var(--color-muted);
+      //max-width: 60ch;
+    }
+  }
+
+  &__details {
+    margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+
+      li {
+        font-size: 1.05rem;
+        color: var(--color-text);
+      }
+    }
+  }
+
+  &__cta {
+    margin-bottom: var(--space-4);
+  }
+
+  &__button {
+    display: inline-block;
+    padding: 1rem 1.8rem;
+    border-radius: var(--radius);
+    background: var(--color-accent);
+    color: #111827;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  &__note {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+  }
+}

@@ -1,3 +1,4 @@
+import ContactCTA from './sections/ContactCTA/ContactCTA'
 import Hero from './sections/Hero/Hero'
 import Outcome from './sections/Outcome/Outcome'
 import Problems from './sections/Problems/Problems'
@@ -10,6 +11,7 @@ export default function App() {
       <Problems />
       <ProcessTimeline />
       <Outcome />
+      <ContactCTA />
     </>
   )
 }
