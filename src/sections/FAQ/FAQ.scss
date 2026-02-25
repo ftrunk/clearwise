@@ -1,0 +1,128 @@
+@use '../../styles/mixins' as m;
+
+.faq {
+  padding: clamp(4rem, 8vw, 6rem) 0;
+  background: var(--color-text); // dein dunkles Navy
+  color: white;
+
+  &__inner {
+    @include m.container;
+    max-width: 980px;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+
+    h2 {
+      margin: 0 0 var(--space-2);
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      letter-spacing: -0.02em;
+      color: white;
+    }
+
+    p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: clamp(1.05rem, 1.2vw, 1.2rem);
+    }
+  }
+
+  /* Weißer Kasten */
+  &__panel {
+    background: rgba(255, 255, 255, 0.96);
+    color: var(--color-text);
+    border-radius: 22px;
+    padding: clamp(1rem, 2vw, 1.25rem);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(17, 24, 39, 0.08);
+  }
+
+  &__item {
+    border-radius: 16px;
+    overflow: hidden;
+
+    & + & {
+      margin-top: 0.75rem;
+    }
+
+    /* leichte Trennung, aber minimal */
+    border: 1px solid rgb(110 115 125);
+    background: white;
+
+    &:hover {
+      background: rgba(215, 215, 215, 0.75);
+    }
+  }
+
+  &__question {
+    list-style: none;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    padding: 1rem 1.1rem;
+    font-weight: 700;
+    font-size: 1.05rem;
+
+    /* remove default marker */
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  &__icon {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    margin-left: auto;
+    transition: transform 0.25s ease;
+    opacity: 0.65;
+  }
+
+  &__icon::before,
+  &__icon::after {
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    left: 50%;
+    transform-origin: center;
+  }
+
+  /* Obere Linie > */
+  &__icon::before {
+    top: calc(50% - 3px);
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  /* untere Linie */
+  &__icon::after {
+    top: calc(50% + 3px);
+    transform: translateX(-50%) rotate(-45deg);
+  }
+
+  &__answer {
+    padding: 0 1.1rem 1.05rem;
+    color: rgba(17, 24, 39, 0.75);
+
+    p {
+      margin: 0;
+      line-height: 1.65;
+    }
+  }
+
+  /* open state */
+  &__item[open] {
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+
+    .faq__icon {
+      transform: rotate(90deg);
+    }
+  }
+}
