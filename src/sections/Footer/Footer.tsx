@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './Footer.scss'
 
 export default function Footer() {
@@ -15,7 +16,7 @@ export default function Footer() {
               <em>learwise</em>
             </div>
             <p className="footer__tagline">
-              DSGVO-sensible Digital-Infrastruktur für Coaches & Therapeut:innen.
+              DSGVO-sensible Digital-Infrastruktur für Coaches & Therapeuten.
             </p>
           </div>
 
@@ -27,7 +28,7 @@ export default function Footer() {
           </nav>
 
           <div className="footer__cta">
-            <p className="footer__ctaText">Bereit für ein ruhiges, sauberes Setup?</p>
+            <p className="footer__ctaText">Bereit für ein sauberes Setup?</p>
             <a className="footer__button" href="#contact">
               Erstgespräch buchen
             </a>
@@ -40,9 +41,8 @@ export default function Footer() {
           </small>
 
           <div className="footer__legal">
-            {/* Wenn du später echte Seiten machst: href="/impressum" / "/datenschutz" */}
-            <a href="#impressum">Impressum</a>
-            <a href="#datenschutz">Datenschutz</a>
+            <Link to="/impressum">Impressum</Link>
+            <Link to="/datenschutz">Datenschutz</Link>
           </div>
         </div>
       </div>

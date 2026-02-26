@@ -1,21 +1,18 @@
-import ContactCTA from './sections/ContactCTA/ContactCTA'
-import FAQ from './sections/FAQ/FAQ'
-import Footer from './sections/Footer/Footer'
-import Hero from './sections/Hero/Hero'
-import Outcome from './sections/Outcome/Outcome'
-import Problems from './sections/Problems/Problems'
-import ProcessTimeline from './sections/Process/ProcessTimeline'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import Impressum from './pages/Impressum'
+import Datenschutz from './pages/Datenschutz'
 
 export default function App() {
   return (
     <>
-      <Hero />
-      <Problems />
-      <ProcessTimeline />
-      <Outcome />
-      <ContactCTA />
-      <FAQ />
-      <Footer />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/impressum" element={<Impressum />} />
+          <Route path="/datenschutz" element={<Datenschutz />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
