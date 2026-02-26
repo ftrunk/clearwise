@@ -1,8 +1,30 @@
 @use '../../styles/mixins' as m;
 
+@keyframes faqSlideDown {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes faqSlideUp {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
 .faq {
   padding: clamp(4rem, 8vw, 6rem) 0;
-  background: var(--color-text); // dein dunkles Navy
+  background: var(--color-text);
   color: white;
 
   &__inner {
@@ -28,7 +50,6 @@
     }
   }
 
-  /* Weißer Kasten */
   &__panel {
     background: rgba(255, 255, 255, 0.96);
     color: var(--color-text);
@@ -41,24 +62,21 @@
   &__item {
     border-radius: 16px;
     overflow: hidden;
+    border: 1px solid rgb(110 115 125);
+    background: white;
 
     & + & {
       margin-top: 0.75rem;
     }
+  }
 
-    /* leichte Trennung, aber minimal */
-    border: 1px solid rgb(110 115 125);
-    background: white;
-
-    &:hover {
-      background: rgba(215, 215, 215, 0.75);
-    }
+  // Radix Header element (optional, damit keine default margins nerven)
+  &__h {
+    margin: 0;
   }
 
   &__question {
-    list-style: none;
     cursor: pointer;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -68,10 +86,14 @@
     font-weight: 700;
     font-size: 1.05rem;
 
-    /* remove default marker */
-    &::-webkit-details-marker {
-      display: none;
-    }
+    background: white;
+    border: none;
+    width: 100%;
+    text-align: left;
+
+    // &:hover {
+    //   background: rgba(215, 215, 215, 0.35);
+    // }
   }
 
   &__icon {
@@ -79,8 +101,8 @@
     width: 16px;
     height: 16px;
     margin-left: auto;
-    transition: transform 0.25s ease;
     opacity: 0.65;
+    transition: transform 0.25s ease;
   }
 
   &__icon::before,
@@ -95,34 +117,38 @@
     transform-origin: center;
   }
 
-  /* Obere Linie > */
   &__icon::before {
     top: calc(50% - 3px);
     transform: translateX(-50%) rotate(45deg);
   }
 
-  /* untere Linie */
   &__icon::after {
     top: calc(50% + 3px);
     transform: translateX(-50%) rotate(-45deg);
   }
 
-  &__answer {
-    padding: 0 1.1rem 1.05rem;
-    color: rgba(17, 24, 39, 0.75);
-
-    p {
-      margin: 0;
-      line-height: 1.65;
+  /* ✅ Radix open state: Trigger hat data-state */
+  &__question[data-state='open'] {
+    .faq__icon {
+      transform: rotate(90deg);
     }
   }
 
-  /* open state */
-  &__item[open] {
-    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+  /* ✅ Smooth expand/collapse */
+  &__answer {
+    overflow: hidden; // wichtig für height animation
+    color: rgba(17, 24, 39, 0.75);
 
-    .faq__icon {
-      transform: rotate(90deg);
+    &[data-state='open'] {
+      animation: faqSlideDown 260ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    &[data-state='closed'] {
+      animation: faqSlideUp 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    &Inner {
+      padding: 0 1.1rem 1.05rem;
     }
   }
 }

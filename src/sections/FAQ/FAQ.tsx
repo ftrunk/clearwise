@@ -1,9 +1,7 @@
 import './FAQ.scss'
+import * as Accordion from '@radix-ui/react-accordion'
 
-type FAQItem = {
-  q: string
-  a: string
-}
+type FAQItem = { q: string; a: string }
 
 const items: FAQItem[] = [
   {
@@ -38,17 +36,22 @@ export default function FAQ() {
         </header>
 
         <div className="faq__panel">
-          {items.map((item) => (
-            <details className="faq__item" key={item.q}>
-              <summary className="faq__question">
-                {item.q}
-                <span className="faq__icon" aria-hidden="true" />
-              </summary>
-              <div className="faq__answer">
-                <p>{item.a}</p>
-              </div>
-            </details>
-          ))}
+          <Accordion.Root className="faq__root" type="single" collapsible>
+            {items.map((item) => (
+              <Accordion.Item className="faq__item" value={item.q} key={item.q}>
+                <Accordion.Header className="faq__h">
+                  <Accordion.Trigger className="faq__question">
+                    {item.q}
+                    <span className="faq__icon" aria-hidden="true" />
+                  </Accordion.Trigger>
+                </Accordion.Header>
+
+                <Accordion.Content className="faq__answer">
+                  <div className="faq__answerInner">{item.a}</div>
+                </Accordion.Content>
+              </Accordion.Item>
+            ))}
+          </Accordion.Root>
         </div>
       </div>
     </section>

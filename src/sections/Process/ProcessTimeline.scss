@@ -1,7 +1,7 @@
 @use '../../styles/mixins' as m;
 
 .timeline {
-  --card-grad-a: rgba(254, 254, 254, 0.06); // “grau”
+  --card-grad-a: rgba(75, 74, 74, 0.06); // “grau”
   --card-grad-b: rgba(15, 14, 14, 0.92); // “weiß”
 
   padding: clamp(3rem, 6vw, 5.5rem) 0;
@@ -99,7 +99,7 @@
     text-align: right;
 
     .timeline__content {
-      background: linear-gradient(165deg, var(--card-grad-a) 0%, var(--card-grad-b) 70%);
+      background: linear-gradient(165deg, var(--card-grad-a) -20%, var(--card-grad-b) 70%);
     }
   }
 
@@ -108,7 +108,7 @@
     text-align: left;
 
     .timeline__content {
-      background: linear-gradient(195deg, var(--card-grad-a) 0%, var(--card-grad-b) 70%);
+      background: linear-gradient(195deg, var(--card-grad-a) -20%, var(--card-grad-b) 70%);
     }
   }
 
