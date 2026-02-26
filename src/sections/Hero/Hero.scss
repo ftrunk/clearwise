@@ -168,6 +168,7 @@
       margin: 0 auto;
       display: block;
       width: fit-content;
+      justify-self: center;
 
       // kleinere Offsets, damit nix rausläuft
       --stack-1-x: -10px;
@@ -179,6 +180,13 @@
 
     &__image {
       width: min(320px, 86vw);
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    &__content {
+      grid-template-columns: 1fr;
+      gap: 3rem;
     }
   }
 
@@ -195,31 +203,7 @@
     &__image-wrapper::after {
       opacity: 0.6;
     }
-  }
 
-  @include m.down(420px) {
-    // wenn du ultra-clean willst:
-    // zweiten layer komplett weg
-    &__image-wrapper::after {
-      display: none;
-    }
-  }
-
-  // 900px
-  @include m.down(900px) {
-    &__content {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-
-    &__image {
-      max-width: 320px;
-      margin: 0 auto;
-    }
-  }
-
-  //MOBILE
-  @include m.down(600px) {
     padding-bottom: var(--space-5);
 
     &__nav {
@@ -234,6 +218,12 @@
     &__cta {
       padding: 0.5rem 0.75rem; // etwas kompakter als desktop
       font-size: 0.95rem;
+    }
+  }
+
+  @include m.down(420px) {
+    &__image-wrapper::after {
+      display: none;
     }
   }
 }
