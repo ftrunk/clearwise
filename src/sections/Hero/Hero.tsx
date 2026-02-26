@@ -35,11 +35,13 @@ export default function Hero() {
           </p>
         </div>
 
-        <img
-          src={heroPortrait}
-          alt="Ferdinand – Digital Infrastructure Architect"
-          className="hero__image"
-        />
+        <div className="hero__image-wrapper">
+          <img
+            src={heroPortrait}
+            alt="Ferdinand – Digital Infrastructure Architect"
+            className="hero__image"
+          />
+        </div>
       </div>
     </section>
   )
